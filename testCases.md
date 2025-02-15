@@ -8,7 +8,7 @@
 
 ### **a-i. Prioritized Test Cases**
 
-1. **Search for a product on the product page and ensure it returns relevant results.**
+1. **Search for a product and ensure it returns relevant results.**
 2. **Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and image).**
 3. **Ensure that selected product details (name, price, description) are displayed accurately in the "Your Bag" page.**
 4. **Verify the functionality of the "Add to Bag" button. The selected product should be available in the "Your Bag" page.**
@@ -28,7 +28,7 @@
 
 ### **a-ii. Test Cases Suitable for Automation and Why**
 
-1. **Search for a product on the product page and ensure it returns relevant results**
+1. **Search for a product and ensure it returns relevant results.**
     - **Why**: Automated tests can simulate search queries and verify that the correct products are returned without manual intervention.
 
 2. **Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and image)**
@@ -73,7 +73,7 @@
 
 #### **Following test cases can be automated:**
 
-1. **Search**: Search for a product on the product page and ensure it returns relevant results
+1. **Search**: Search for a product and ensure it returns relevant results.
     - **Why**: Automated tests can simulate search queries and verify that the correct products are returned without manual intervention.
  
 2. **Product Detail Page**: Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and image)

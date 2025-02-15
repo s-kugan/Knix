@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="2">
+
+  <testsuite name="homePageTest"
+    errors="0" failures="1" hostname="" id="" package="homePageTest" skipped="0"
+    tests="2" time="85.31" timestamp="">
+  
+    <testcase name="Search for a product and ensure it returns relevant results." classname="homePageTest" time="25.85" assertions="1">  <failure message="Timed out while waiting for element &lt;button[type=&#34;search&#34;]&gt; to be present for 15000 milliseconds. - expected &#34;visible&#34; but got: &#34;not found&#34; (15468ms)">    at Page.launchHomePage (C:\Knix\nightwatch\page-objects\homePO.js:19:20)
+    at async DescribeInstance.&lt;anonymous&gt; (C:\Knix\test\homePageTest.js:9:5)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

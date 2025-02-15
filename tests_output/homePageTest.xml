@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="0">
+
+  <testsuite name="homePageTest"
+    errors="0" failures="0" hostname="" id="" package="homePageTest" skipped="1"
+    tests="0" time="0.001000" timestamp="">
+  
+
+  
+
+    
+    <error message="An error occurred while creating a new ChromeDriver session: [SessionNotCreatedError] session not created: Missing or invalid capabilities
+  (Driver info: chromedriver=133.0.6943.98 (da53563ceb66412e2637507c8724bd0cab05e453-refs/branch-heads/6943_85@{#7}),platform=Windows NT 10.0.22631 x86_64)"><![CDATA[
+      SessionNotCreatedError: An error occurred while creating a new ChromeDriver session: [SessionNotCreatedError] session not created: Missing or invalid capabilities
+  (Driver info: chromedriver=133.0.6943.98 (da53563ceb66412e2637507c8724bd0cab05e453-refs/branch-heads/6943_85@{#7}),platform=Windows NT 10.0.22631 x86_64)
+    at Object.checkLegacyResponse (C:\Knix\node_modules\selenium-webdriver\lib\error.js:551:15)
+    at parseHttpResponse (C:\Knix\node_modules\selenium-webdriver\lib\http.js:506:13)
+    at Executor.execute (C:\Knix\node_modules\selenium-webdriver\lib\http.js:446:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      ]]></error>  
+
+  
+    
+    <testcase
+      name="Search for a product and ensure it returns relevant results." classname="homePageTest">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>
