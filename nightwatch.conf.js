@@ -58,6 +58,12 @@ module.exports = {
       },      
       desiredCapabilities: {
         browserName: 'chrome',
+        loggingPrefs: {
+          browser: "ALL",
+          driver: "ALL",
+          performance: "ALL",
+          //server: "OFF",
+        },
         javascriptEnabled: true,
         acceptSslCerts: true,
         "goog:chromeOptions": {
@@ -74,6 +80,7 @@ module.exports = {
             "whitelist-ips",
             "disable-dev-shm-usage",
           ],
+          w3c: true,
           prefs: {
             "credentials_enable_service": false,
             "profile.password_manager_enabled": false,
@@ -91,55 +98,116 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: '',
+        port: 9515,
+        host: 'localhost',
+        ssl: false,
+        default_path_prefix: '',
+        cli_args: [
+          
+        ]
         
       },
      
       
-    }, 
+  }, 
     
-    firefox: {
+  firefoxEnv: {
+    disable_error_log: false,
+    launch_url: 'https://knix.com/',
+
+    screenshots: {
+      enabled: true,
+      path: 'screens',
+      on_failure: true
+    },      
       desiredCapabilities: {
-        firefoxSettings
-        // browserName: 'firefox',
-        // alwaysMatch: {
-        //   acceptInsecureCerts: true,
-        //   'moz:firefoxOptions': {
-        //     args: [
-        //       // '-headless',
-        //       // '-verbose'
-        //     ]
-        //   }
-        // }
+        browserName: "firefox",
+        javascriptEnabled: true,
+        platform: "ANY",
+        acceptInsecureCerts: true,
+        alwaysMatch: {
+          "moz:firefoxOptions": {
+            args: [
+              "--kiosk",
+              "--width=1920", 
+              "--height=1080"
+            ],
+            prefs: {
+              "browser.helperApps.alwaysAsk.force": false,
+              "browser.download.folderList": 2,
+              // "browser.privatebrowsing.autostart": true,
+              "pdfjs.disabled": true,
+              "browser.helperApps.neverAsk.openFile": "application/pdf,application/zip",
+              "browser.helperApps.neverAsk.saveToDisk": "application/zip,application/octet-stream,image/jpeg,application/vnd.ms-outlook,text/html,application/pdf",
+              "browser.download.manager.showWhenStarting": false,
+              "browser.download.manager.useWindow": false,
+              "browser.download.manager.showAlertOnComplete": false,
+              "browser.download.dir": path.join(__dirname, "/fileDownloads"),
+              "browser.download.downloadDir": path.join(__dirname, "/fileDownloads"),
+              "browser.download.defaultFolder": path.join(__dirname, "/fileDownloads"),
+            }
+          }
+  }
+       
       },
       webdriver: {
         start_process: true,
         server_path: '',
+        port: 4444,
+        host: 'localhost',
+        ssl: false,
+        default_path_prefix: '',
         cli_args: [
-          // very verbose geckodriver logs
-          // '-vv'
+          
         ]
       }
-    },    
-    edge: {
-      desiredCapabilities: {
-        edgeSettings
-        // browserName: 'MicrosoftEdge',
-        // 'ms:edgeOptions': {
-        //   // More info on EdgeDriver: https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options
-        //   args: [
-        //     //'--headless=new'
-        //   ]
-        // }
-      },
+  },
 
-      webdriver: {
+  edgeEnv: {
+    disable_error_log: false,
+      launch_url: 'https://knix.com/',
+
+      screenshots: {
+        enabled: true,
+        path: 'screens',
+        on_failure: true
+      },      
+     
+    desiredCapabilities:{
+      browserName: "MicrosoftEdge",
+      loggingPrefs: {
+        browser: "ALL",
+        driver: "ALL",
+        performance: "ALL",
+        server: "OFF",
+      },
+      javascriptEnabled: true,
+      platform: "ANY",
+      acceptInsecureCerts: true,
+      acceptSslCerts: true,
+      avoidProxy: true,
+      "ms:edgeOptions": {
+        w3c: true,  // Updated to true to follow the W3C WebDriver standard
+        args: [
+          "start-fullscreen",
+          "incognito",
+          "disable-web-security",
+          "ignore-certificate-errors",
+          "no-sandbox",
+          "disable-gpu",
+          "window-size=1920,1080"
+        ]
+      }
+    },
+
+    webdriver: {
         start_process: true,
         server_path: '',
         cli_args: [
           // --verbose
         ]
       }
-    },
+  },
     
    'android.real.firefox': {
       desiredCapabilities: {

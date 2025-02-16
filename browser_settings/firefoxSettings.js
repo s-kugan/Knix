@@ -1,7 +1,7 @@
 const path = require("path");
 
 let firefoxSettings = {
-  browserName: "firefox",
+ browserName: "firefox",
   javascriptEnabled: true,
   platform: "ANY",
   acceptInsecureCerts: true,
@@ -29,6 +29,7 @@ let firefoxSettings = {
       },
     },
   },
+  
 };
 
 module.exports = firefoxSettings;

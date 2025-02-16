@@ -48,9 +48,7 @@ module.exports = {
         const txtEachProdDesc = this.elements.txtEachProdDesc.selector;
         await this.waitForElementVisible('@txtEachProdDesc', 5000);
         const productElements = await browser.element.findAll(txtEachProdDesc);
-        console.log('productElements***',productElements);
         productElements.forEach(async(elem)=>{
-          console.log('elem***',elem);
           const prodText= await elem.getText();
           console.log('prodText***',prodText);
           if(prodText !== undefined && prodText !== null){
