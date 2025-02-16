@@ -11,14 +11,9 @@
   "license": "ISC",
   "devDependencies": {
     "@nightwatch/mobile-helper": "^2.0.0",
-    "@nightwatch/selenium-server": "^4.20.0",
     "appium": "^2.15.0",
     "appium-uiautomator2-driver": "^4.0.1",
-    "chromedriver": "^133.0.1",
-    "edgedriver": "^6.1.1",
-    "geckodriver": "^5.0.0",
     "nightwatch": "^3.11.0",
-    "path": "^0.12.7",
-    "selenium-server": "^3.141.59"
+    "path": "^0.12.7"
   }
 }

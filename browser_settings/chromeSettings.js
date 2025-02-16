@@ -11,13 +11,14 @@ let chromeSettings = {
   acceptInsecureCerts: true,
   "goog:chromeOptions": {
     args: [
+      "start-fullscreen",
       "incognito",
       "--no-sandbox",
       "--disable-infobars",
       "--disable-gpu",
       "disable-web-security",
       "ignore-certificate-errors",
-      "window-size=1920,1080",
+      //"window-size=1920,1080",
       "disable-setuid-sandbox",
       "whitelist-ips",
       "disable-dev-shm-usage",
