@@ -32,11 +32,11 @@
 
    - **Why**: Automated tests can simulate search queries and verify that the correct products are returned without manual intervention.
 
-2. **Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and image)**
+2. **Verify that the selected product from the product list page displays correctly on the product detail page (name and price)**
 
-   - **Why**: Automated tests can compare the details of the selected product (name, price, and description) on the list page with those on the detail page to ensure consistency.
+   - **Why**: Automated tests can compare the details of the selected product (name and price) on the list page with those on the detail page to ensure consistency.
 
-3. **Ensure that selected product details (name, price, description) are displayed accurately in the "Your Bag" page**
+3. **Ensure that selected product details (name and price) are displayed accurately in the "Your Bag" page**
 
    - **Why**: Automated tests can validate that the details match what was selected, ensuring accuracy in the shopping cart.
 
