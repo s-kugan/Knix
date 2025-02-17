@@ -76,7 +76,7 @@
 1. **Search**: Search for a product and ensure it returns relevant results.
     - **Why**: Automated tests can simulate search queries and verify that the correct products are returned without manual intervention.
  
-2. **Product Detail Page**: Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and image)
+2. **Product Detail Page**: Verify that the selected product from the product list page displays correctly on the product detail page (name and price)
     - **Why**: Automated tests can compare the details of the selected product (name, price, and description) on the list page with those on the detail page to ensure consistency.
     
 3. **Product Basket**: Ensure that selected product details (name, price, description) are displayed accurately in the "Your Bag" page
