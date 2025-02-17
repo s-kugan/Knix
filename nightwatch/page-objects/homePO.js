@@ -49,9 +49,11 @@ module.exports = {
         await this.waitForElementVisible('@txtEachProdDesc', 5000);
         const productElements = await browser.element.findAll(txtEachProdDesc);
         productElements.forEach(async(elem)=>{
+          await this.waitForElementVisible(elem,5000);
           const prodText= await elem.getText();
           console.log('prodText***',prodText);
           if(prodText !== undefined && prodText !== null){
+            await this.pause(500);
             browser.verify.ok(true,await prodText.includes(searchText),`${prodText} contains searched value ${searchText}`)
           }
         })
