@@ -4,6 +4,10 @@
     },
     "productSize":{
         "size":"M+"
+    },
+    "cart":{
+        "empty":"Your cart is empty",
+        "potential":"But you’re full of potential"
     }
 
 }

@@ -10,6 +10,13 @@ module.exports = {
       selector: "//a[contains(text(),'CHECKOUT NOW')]",
       locateStrategy: "xpath",
     },
+    btnRemove: {
+      selector: "//button[contains(text(),'Remove')]",
+      locateStrategy: "xpath",
+    },
+    txtContentEmpty: {
+      selector: " section.grid.px-5",
+    },
   },
   commands: [
     {
@@ -20,6 +27,10 @@ module.exports = {
       async selectCheckout() {
         await this.waitForElementVisible("@btnCheckOut", 8000);
         await this.click("@btnCheckOut");
+      },
+      async removeProduct() {
+        await this.waitForElementVisible("@btnRemove", 8000);
+        await this.click("@btnRemove");
       },
     },
   ],

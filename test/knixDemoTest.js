@@ -65,11 +65,35 @@ describe("Knix Home Page Test Cases", function () {
     await this.productlist.selectFirstProductCategory();
     await this.productlist.selectFirstProductfromList();
     await this.productDetail.openSizeDropDown(testdata.productSize.size);
+
+    //Add the product into the cart and click Checkout button
     await this.cart.addToBag();
     await this.cart.selectCheckout();
+
+    //Verify that button for Shop and button for gPay and paynow buttons are available and visible.
     this.payment.expect.element("@btnshopPay").to.be.visible;
     this.payment.expect.element("@btnPaynow").to.be.visible;
     this.payment.expect.element("@btnGpay").to.be.visible;
+  });
+
+  it("Ensure that the customer can remove the product from Your Bag page.", async () => {
+    await this.navigation.selectSwimWear();
+    await this.productlist.selectFirstProductCategory();
+    await this.productlist.selectFirstProductfromList();
+    await this.productDetail.openSizeDropDown(testdata.productSize.size);
+    await this.cart.addToBag();
+
+    //Remove the product from the cart
+    await this.cart.removeProduct();
+    this.cart.expect.element("@txtCartContents").to.not.be.present;
+
+    //Verify the texts for emptyness in the cart
+    this.cart.expect
+      .element("@txtContentEmpty")
+      .text.to.contain(testdata.cart.empty);
+    this.cart.expect
+      .element("@txtContentEmpty")
+      .text.to.contain(testdata.cart.potential);
   });
 
   afterEach(async function (browser) {
