@@ -29,6 +29,10 @@ module.exports = {
     txtboxQty: {
       selector: ".px-2.text-center",
     },
+    titleh2Cart: {
+      selector: "//span[contains(text(),'Your Bag')]",
+      locateStrategy: "xpath",
+    },
   },
   commands: [
     {
@@ -55,18 +59,12 @@ module.exports = {
       async getTextboxQtyValue() {
         await this.waitForElementVisible("@txtboxQty", 5000);
         let qty = await this.getValue("@txtboxQty");
-        console.log("qty***", qty);
         return qty;
       },
-      async getSubTotal(text) {
+      async getSubTotal() {
+        await this.pause(5000);
         await this.waitForElementVisible("@txtSubTotal", 5000);
-        const subTotalElement = await this.findByText(
-          text /* {
-          exact: true,
-        } */
-        );
-        const subtotal = await subTotalElement.getText();
-        console.log("subtotal***", subtotal);
+        const subtotal = await this.getText("@txtSubTotal");
         return subtotal;
       },
     },

@@ -76,23 +76,31 @@ describe("Knix Home Page Test Cases", function () {
     this.payment.expect.element("@btnGpay").to.be.visible;
   });
 
-  it.only("Product Quantity::Ensure that the customer can increase the product quantity and decrease the product quantity by clicking the + and -button", async () => {
+  it("Product Quantity:Ensure that the customer can increase the product quantity by clicking the + button verify quantity and sub-total", async () => {
     await this.navigation.selectSwimWear();
     await this.productlist.selectFirstProductCategory();
     let prodPrice = await this.productlist.getProductPrice();
     let qty = 2;
     let calSubtotal = prodPrice * qty;
-    console.log("calsubtotal****", calSubtotal);
     await this.productlist.selectFirstProductfromList();
     await this.productDetail.openSizeDropDown(testdata.productSize.size);
     await this.cart.addToBag();
 
-    //Remove the product from the cart
+    //Increase the product qty by clicking + button in the cart
     await this.cart.increaseProductQty();
     let retrieveQty = await this.cart.getTextboxQtyValue();
+
+    //Verify product qty is increased correctly in the cart
     browser.verify.ok(qty, retrieveQty);
 
-    //await browser.pause();
+    //verify the quantity in the title
+    this.cart.expect.element("@titleh2Cart").text.to.contain(qty);
+
+    //Verify the sub-total according to the qty change
+    if (retrieveQty == qty) {
+      let subtotal = await this.cart.getSubTotal();
+      browser.verify.ok(calSubtotal.toFixed(2), subtotal);
+    }
   });
 
   it("Ensure that the customer can remove the product from Your Bag page.", async () => {
