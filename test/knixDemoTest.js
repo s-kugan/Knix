@@ -76,6 +76,25 @@ describe("Knix Home Page Test Cases", function () {
     this.payment.expect.element("@btnGpay").to.be.visible;
   });
 
+  it.only("Product Quantity::Ensure that the customer can increase the product quantity and decrease the product quantity by clicking the + and -button", async () => {
+    await this.navigation.selectSwimWear();
+    await this.productlist.selectFirstProductCategory();
+    let prodPrice = await this.productlist.getProductPrice();
+    let qty = 2;
+    let calSubtotal = prodPrice * qty;
+    console.log("calsubtotal****", calSubtotal);
+    await this.productlist.selectFirstProductfromList();
+    await this.productDetail.openSizeDropDown(testdata.productSize.size);
+    await this.cart.addToBag();
+
+    //Remove the product from the cart
+    await this.cart.increaseProductQty();
+    let retrieveQty = await this.cart.getTextboxQtyValue();
+    browser.verify.ok(qty, retrieveQty);
+
+    //await browser.pause();
+  });
+
   it("Ensure that the customer can remove the product from Your Bag page.", async () => {
     await this.navigation.selectSwimWear();
     await this.productlist.selectFirstProductCategory();
