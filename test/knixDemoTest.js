@@ -11,6 +11,7 @@ describe("Knix Home Page Test Cases", function () {
     this.navigation = await browser.page.topNavigationPO();
     this.productDetail = await browser.page.productDetailPO();
     this.cart = await browser.page.shoppingCartPO();
+    this.payment = await browser.page.paymentPO();
 
     await this.homepage.launchHomePage();
 
@@ -18,7 +19,7 @@ describe("Knix Home Page Test Cases", function () {
     await this.homepage.selectShopUS();
   });
 
-  it("Search : Search for a product and ensure it returns relevant results.", async (browser) => {
+  it("Search : Search for a product and ensure it returns relevant results.", async () => {
     await this.homepage.clickSearchButton();
 
     //verify searched product returned the result
@@ -42,7 +43,7 @@ describe("Knix Home Page Test Cases", function () {
       .text.to.contain(prodPrice);
   });
 
-  it("Product Basket: Ensure that selected from product  (name and price) are displayed accurately in the 'Your Bag' page", async () => {
+  it("Product Basket: Ensure that selected from product  (name ,price and size) are displayed accurately in the 'Your Bag' page", async () => {
     await this.navigation.selectSwimWear();
     await this.productlist.selectFirstProductCategory();
     let prodDesc = await this.productlist.getProductDesc();
@@ -57,6 +58,18 @@ describe("Knix Home Page Test Cases", function () {
     this.cart.expect
       .element("@txtCartContents")
       .text.to.contain(testdata.productSize.size);
+  });
+
+  it("Payment page : Check that the 'checkout' button leads to the 'Payment' page", async () => {
+    await this.navigation.selectSwimWear();
+    await this.productlist.selectFirstProductCategory();
+    await this.productlist.selectFirstProductfromList();
+    await this.productDetail.openSizeDropDown(testdata.productSize.size);
+    await this.cart.addToBag();
+    await this.cart.selectCheckout();
+    this.payment.expect.element("@btnshopPay").to.be.visible;
+    this.payment.expect.element("@btnPaynow").to.be.visible;
+    this.payment.expect.element("@btnGpay").to.be.visible;
   });
 
   afterEach(async function (browser) {

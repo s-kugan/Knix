@@ -10,19 +10,15 @@
 
 1. **Search for a product and ensure it returns relevant results.**
 2. **Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and image).**
-3. **Ensure that selected product details (name, price, description) are displayed accurately in the "Your Bag" page.**
-4. **Verify the functionality of the "Add to Bag" button. The selected product should be available in the "Your Bag" page.**
-5. **Verify that the selected size for the product displays correctly in the "Your Bag" page.**
-6. **Verify that the selected color of the product displays correctly in the "Your Bag" page.**
-7. **Check that the "checkout" button leads to the "Payment" page.**
-8. **Ensure that the customer can increase the product quantity by clicking the + button in the "Your Bag" page.**
-9. **Ensure that the customer can decrease the product quantity by clicking the - button in the "Your Bag" page.**
-10. **Verify Quick View in the product list page works as expected by giving options for Color and Size.**
-11. **Verify that the product list switches to CAD currency when the user selects CAD at the bottom of the page.**
-12. **Verify that the customer can add the product into the product basket from the Quick View window.**
-13. **Verify all the links on the product list page correctly.**
-14. **Check the responsiveness of the product page on different devices and screen sizes (e.g., desktop, tablet, mobile).**
-15. **Ensure that navigation links (e.g., "Home," "Shop All," "New Arrivals") work correctly.**
+3. **Ensure that selected product details (name, price and size) are displayed accurately in the "Your Bag" page.**
+4. **Check that the "checkout" button leads to the "Payment" page.**
+5. **Ensure that the customer can increase the product quantity by clicking the + button and decrease the product quantity by clicking the - buttonin the "Your Bag" page.**
+6. **Verify Quick View in the product list page works as expected by giving options for Color and Size.**
+7. **Verify that the product list switches to CAD currency when the user selects CAD at the bottom of the page.**
+8. **Verify that the customer can add the product into the product basket from the Quick View window.**
+9. **Verify all the links on the product list page correctly.**
+10. **Check the responsiveness of the product page on different devices and screen sizes (e.g., desktop, tablet, mobile).**
+11. **Ensure that navigation links (e.g., "Home," "Shop All," "New Arrivals") work correctly.**
 
 ---
 
@@ -36,47 +32,35 @@
 
    - **Why**: Automated tests can compare the details of the selected product (name and price) on the list page with those on the detail page to ensure consistency.
 
-3. **Ensure that selected product details (name and price) are displayed accurately in the "Your Bag" page**
+3. **Ensure that selected product details (name ,price and size) are displayed accurately in the "Your Bag" page**
 
    - **Why**: Automated tests can validate that the details match what was selected, ensuring accuracy in the shopping cart.
 
-4. **Verify the functionality of the "Add to Bag" button. The selected product should be available in the "Your Bag" page**
-
-   - **Why**: Automated tests can click the button and verify that the product appears in the cart, simulating user actions.
-
-5. **Verify that the selected size for the product displays correctly in the "Your Bag" page**
-
-   - **Why**: Automated tests can ensure that the correct size is displayed, reducing the risk of user errors.
-
-6. **Verify that the selected color of the product displays correctly in the "Your Bag" page**
-
-   - **Why**: Automated tests can check the selected color, ensuring the correct item is added to the cart.
-
-7. **Check that the "checkout" button leads to the "Payment" page**
+4. **Check that the "checkout" button leads to the "Payment" page**
 
    - **Why**: Automated tests can verify navigation to the correct page, ensuring a smooth checkout process.
 
-8. **Ensure that the customer can increase the product quantity by clicking the + button in the shopping cart or product basket page**
+5. **Ensure that the customer can increase the product quantity by clicking the + button and decrease the product quantity by clicking the - buttonin the "Your Bag" page.**
 
    - **Why**: Automated tests can simulate quantity changes and verify the results, ensuring functionality.
 
-9. **Ensure that the customer can decrease the product quantity by clicking the - button in the shopping cart or product basket page**
+6. **Ensure that the customer can remove the product from "Your Bag" page.**
 
    - **Why**: Automated tests can simulate quantity reductions and verify the results, ensuring functionality.
 
-10. **Verify Quick View in the product list page works as expected by giving options for Color and Size**
+7. **Verify Quick View in the product list page works as expected by giving options for Color and Size**
 
-    - **Why**: Automated tests can ensure that the Quick View functionality works correctly, enhancing user experience.
+   - **Why**: Automated tests can ensure that the Quick View functionality works correctly, enhancing user experience.
 
-11. **Verify that the product list switches to CAD currency when the user selects CAD at the bottom of the page**
+8. **Verify that the product list switches to CAD currency when the user selects CAD at the bottom of the page**
 
-    - **Why**: Automated tests can verify currency changes, ensuring accurate pricing.
+   - **Why**: Automated tests can verify currency changes, ensuring accurate pricing.
 
-12. **Verify that the customer can add the product into the product basket from the Quick View window**
+9. **Verify that the customer can add the product into the product basket from the Quick View window**
 
-    - **Why**: Automated tests can verify that products can be added from Quick View, ensuring functionality.
+   - **Why**: Automated tests can verify that products can be added from Quick View, ensuring functionality.
 
-13. **Ensure that navigation links (e.g., "Home," "Shop All," "New Arrivals") work correctly**
+10. **Ensure that navigation links (e.g., "Home," "Shop All," "New Arrivals") work correctly**
     - **Why**: Automated tests can verify that navigation links lead to the correct pages.
 
 ---
@@ -91,17 +75,19 @@
 
 2. **Product Detail Page**: Verify that the selected product from the product list page displays correctly on the product detail page (name and price)
    - **Why**: Automated tests can compare the details of the selected product (name and price) on the list page with those on the detail page to ensure consistency.
-3. **Product Basket**: Ensure that selected product (name and price) are displayed accurately in the "Your Bag" page
+3. **Product Basket**: Ensure that selected product (name ,price and size) are displayed accurately in the "Your Bag" page
    - **Why**: Automated tests can validate that the details match what was selected, ensuring accuracy in the shopping cart.
-4. **Quantity in Product Basket**: Ensure that the customer can increase the product quantity by clicking the + button in the shopping cart or product basket page
+4. **Check that the "checkout" button leads to the "Payment" page**
+   - **Why**: Automated tests can verify navigation to the correct page, ensuring a smooth checkout process.
+5. **Product Quantity**::Ensure that the customer can increase the product quantity by clicking the + button and decrease the product quantity by clicking the - button in the "Your Bag" page.
    - **Why**: Automated tests can simulate quantity changes and verify the results, ensuring functionality.
-5. **Quick View Window**: Verify that the customer can add the product into the product basket from the Quick View window
+6. **Ensure that the customer can remove the product from "Your Bag" page.**
+   **Why**: Automated tests can simulate quantity reductions and verify the results, ensuring functionality.
+7. **Quick View Window**: Verify that the customer can add the product into the product basket from the Quick View window
    - **Why**: Automated tests can verify that products can be added from Quick View, ensuring functionality.
-6. **Currency**: Verify that the product list switches to CAD currency when the user selects CAD at the bottom of the page
-
+8. **Currency**: Verify that the product list switches to CAD currency when the user selects CAD at the bottom of the page
    - **Why**: Automated tests can verify currency changes, ensuring accurate pricing.
-
-7. **Payment Page**: Check that the "checkout" button leads to the "Payment" page
+9. **Payment Page**: Check that the "checkout" button leads to the "Payment" page
    - **Why**: Automated tests can verify navigation to the correct page, ensuring a smooth checkout process.
 
 ---
