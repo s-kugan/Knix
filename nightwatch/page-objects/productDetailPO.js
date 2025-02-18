@@ -6,6 +6,9 @@ module.exports = {
     optionSize: {
       selector: 'li[role="option"]',
     },
+    radioProductColor: {
+      selector: '#pdp_color_swatch button[aria-checked="true"]',
+    },
   },
   commands: [
     {
@@ -15,6 +18,12 @@ module.exports = {
         await this.waitForElementVisible("@optionSize", 5000);
         await this.setValue("@optionSize", size);
         await this.setValue("@optionSize", this.api.Keys.ENTER);
+      },
+      async getColor() {
+        await this.waitForElementVisible("@radioProductColor", 5000);
+        let color = await this.getAttribute("@radioProductColor", "title");
+        console.log("color***", color);
+        return color;
       },
     },
   ],

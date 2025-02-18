@@ -50,6 +50,8 @@ describe("Knix Home Page Test Cases", function () {
     let prodPrice = await this.productlist.getProductPrice();
     await this.productlist.selectFirstProductfromList();
     await this.productDetail.openSizeDropDown(testdata.productSize.size);
+    let prodColour = await this.productDetail.getColor();
+
     await this.cart.addToBag();
 
     //Verify shopping cart contents by name,price and size of the product
@@ -58,6 +60,7 @@ describe("Knix Home Page Test Cases", function () {
     this.cart.expect
       .element("@txtCartContents")
       .text.to.contain(testdata.productSize.size);
+    this.cart.expect.element("@txtCartContents").text.to.contain(prodColour);
   });
 
   it("Payment page : Check that the 'checkout' button leads to the 'Payment' page", async () => {
