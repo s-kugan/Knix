@@ -9,6 +9,8 @@ describe("Knix Home Page Test Cases", function () {
     this.homepage = await browser.page.homePO();
     this.productlist = await browser.page.productListPO();
     this.navigation = await browser.page.topNavigationPO();
+    this.productDetail = await browser.page.productDetailPO();
+    this.cart = await browser.page.shoppingCartPO();
 
     await this.homepage.launchHomePage();
 
@@ -16,24 +18,45 @@ describe("Knix Home Page Test Cases", function () {
     await this.homepage.selectShopUS();
   });
 
-  it("Search for a product and ensure it returns relevant results.", async (browser) => {
+  it("Search : Search for a product and ensure it returns relevant results.", async (browser) => {
     await this.homepage.clickSearchButton();
+
+    //verify searched product returned the result
     await this.homepage.typeSearch(testdata.product.search);
     this.productlist.verifySearchValue(testdata.product.search);
   });
 
-  it("Verify that selected product from the product list page displays the name and price correctly in the product detail page", async (browser) => {
+  it("Product Detail Page : Verify that selected product from the product list page displays the name and price correctly in the product detail page", async () => {
     await this.navigation.selectSwimWear();
     await this.productlist.selectFirstProductCategory();
     let prodDesc = await this.productlist.getProductDesc();
     let prodPrice = await this.productlist.getProductPrice();
     await this.productlist.selectFirstProductfromList();
+
+    //Verify product detail page by name and price of the product
     this.productlist.expect
       .element("@txtProdDetailDesc")
       .text.to.contain(prodDesc);
     this.productlist.expect
       .element("@txtProdDetailDesc")
       .text.to.contain(prodPrice);
+  });
+
+  it("Product Basket: Ensure that selected from product  (name and price) are displayed accurately in the 'Your Bag' page", async () => {
+    await this.navigation.selectSwimWear();
+    await this.productlist.selectFirstProductCategory();
+    let prodDesc = await this.productlist.getProductDesc();
+    let prodPrice = await this.productlist.getProductPrice();
+    await this.productlist.selectFirstProductfromList();
+    await this.productDetail.openSizeDropDown(testdata.productSize.size);
+    await this.cart.addToBag();
+
+    //Verify shopping cart contents by name,price and size of the product
+    this.cart.expect.element("@txtCartContents").text.to.contain(prodDesc);
+    this.cart.expect.element("@txtCartContents").text.to.contain(prodPrice);
+    this.cart.expect
+      .element("@txtCartContents")
+      .text.to.contain(testdata.productSize.size);
   });
 
   afterEach(async function (browser) {

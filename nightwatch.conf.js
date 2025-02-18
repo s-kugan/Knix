@@ -11,53 +11,48 @@
 //             __/ |
 //            |___/
 
-/*******Import-browser-settings ********************************/
-const chromeSettings = require("./browser_settings/chromeSettings");
-const firefoxSettings = require("./browser_settings/firefoxSettings");
-const edgeSettings = require("./browser_settings/edgeSettings");
-
 const path = require("path");
 
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
-  src_folders: ['test'],
+  src_folders: ["test"],
 
   output_folder: "tests_output",
 
   // See https://nightwatchjs.org/guide/concepts/page-object-model.html
-  page_objects_path: ['nightwatch/page-objects/'],
+  page_objects_path: ["nightwatch/page-objects/"],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-commands.html
-  custom_commands_path: ['nightwatch/custom-commands'],
+  custom_commands_path: ["nightwatch/custom-commands"],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-custom-assertions.html
-  custom_assertions_path: ['nightwatch/custom-assertions'],
+  custom_assertions_path: ["nightwatch/custom-assertions"],
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   plugins: [],
-  
+
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
-  globals_path: '',
-  
+  globals_path: "",
+
   webdriver: {},
 
   test_workers: {
-    enabled: false
+    enabled: false,
   },
 
   test_settings: {
-  chromeEnv: {
+    chromeEnv: {
       disable_error_log: false,
-      launch_url: 'https://knix.com/',
+      launch_url: "https://knix.com/",
 
       screenshots: {
         enabled: true,
-        path: 'screens',
-        on_failure: true
-      },      
+        path: "screens",
+        on_failure: true,
+      },
       desiredCapabilities: {
-        browserName: 'chrome',
+        browserName: "chrome",
         loggingPrefs: {
           browser: "ALL",
           driver: "ALL",
@@ -82,7 +77,7 @@ module.exports = {
           ],
           w3c: true,
           prefs: {
-            "credentials_enable_service": false,
+            credentials_enable_service: false,
             "profile.password_manager_enabled": false,
             download: {
               prompt_for_download: false,
@@ -92,181 +87,183 @@ module.exports = {
             plugins: {
               always_open_pdf_externally: true,
             },
-          }
-        }
-      }, 
+          },
+        },
+      },
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
         port: 9515,
-        host: 'localhost',
+        host: "localhost",
         ssl: false,
-        default_path_prefix: '',
-        cli_args: [
-          
-        ]
-        
+        default_path_prefix: "",
+        cli_args: [],
       },
-     
-      
-  }, 
-    
-  firefoxEnv: {
-    disable_error_log: false,
-    launch_url: 'https://knix.com/',
+    },
 
-    screenshots: {
-      enabled: true,
-      path: 'screens',
-      on_failure: true
-    },      
+    firefoxEnv: {
+      disable_error_log: false,
+      launch_url: "https://knix.com/",
+
+      screenshots: {
+        enabled: true,
+        path: "screens",
+        on_failure: true,
+      },
+      globals: require("./globals"), // Include the path to globals.js
       desiredCapabilities: {
         browserName: "firefox",
         javascriptEnabled: true,
         platform: "ANY",
         acceptInsecureCerts: true,
+        elementScrollBehavior: 1,
         alwaysMatch: {
           "moz:firefoxOptions": {
-            args: [
-              "--kiosk",
-              "--width=1920", 
-              "--height=1080"
-            ],
+            args: ["--kiosk", "--width=1920", "--height=1080"],
             prefs: {
               "browser.helperApps.alwaysAsk.force": false,
               "browser.download.folderList": 2,
               // "browser.privatebrowsing.autostart": true,
               "pdfjs.disabled": true,
-              "browser.helperApps.neverAsk.openFile": "application/pdf,application/zip",
-              "browser.helperApps.neverAsk.saveToDisk": "application/zip,application/octet-stream,image/jpeg,application/vnd.ms-outlook,text/html,application/pdf",
+              "browser.helperApps.neverAsk.openFile":
+                "application/pdf,application/zip",
+              "browser.helperApps.neverAsk.saveToDisk":
+                "application/zip,application/octet-stream,image/jpeg,application/vnd.ms-outlook,text/html,application/pdf",
               "browser.download.manager.showWhenStarting": false,
               "browser.download.manager.useWindow": false,
               "browser.download.manager.showAlertOnComplete": false,
               "browser.download.dir": path.join(__dirname, "/fileDownloads"),
-              "browser.download.downloadDir": path.join(__dirname, "/fileDownloads"),
-              "browser.download.defaultFolder": path.join(__dirname, "/fileDownloads"),
-            }
-          }
-  }
-       
+              "browser.download.downloadDir": path.join(
+                __dirname,
+                "/fileDownloads"
+              ),
+              "browser.download.defaultFolder": path.join(
+                __dirname,
+                "/fileDownloads"
+              ),
+            },
+          },
+        },
       },
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
         port: 4444,
-        host: 'localhost',
+        host: "localhost",
         ssl: false,
-        default_path_prefix: '',
-        cli_args: [
-          
-        ]
-      }
-  },
+        default_path_prefix: "",
+        cli_args: [],
+      },
+    },
 
-  edgeEnv: {
-    disable_error_log: false,
-      launch_url: 'https://knix.com/',
+    edgeEnv: {
+      disable_error_log: false,
+      launch_url: "https://knix.com/",
 
       screenshots: {
         enabled: true,
-        path: 'screens',
-        on_failure: true
-      },      
-     
-    desiredCapabilities:{
-      browserName: "MicrosoftEdge",
-      loggingPrefs: {
-        browser: "ALL",
-        driver: "ALL",
-        performance: "ALL",
-        server: "OFF",
+        path: "screens",
+        on_failure: true,
       },
-      javascriptEnabled: true,
-      platform: "ANY",
-      acceptInsecureCerts: true,
-      acceptSslCerts: true,
-      avoidProxy: true,
-      "ms:edgeOptions": {
-        w3c: true,  // Updated to true to follow the W3C WebDriver standard
-        args: [
-          "start-fullscreen",
-          "incognito",
-          "disable-web-security",
-          "ignore-certificate-errors",
-          "no-sandbox",
-          "disable-gpu",
-          "window-size=1920,1080"
-        ]
-      }
+      globals: require("./globals"), // Include the path to globals.js
+      desiredCapabilities: {
+        browserName: "MicrosoftEdge",
+        loggingPrefs: {
+          browser: "ALL",
+          driver: "ALL",
+          performance: "ALL",
+          server: "OFF",
+        },
+        javascriptEnabled: true,
+        platform: "ANY",
+        acceptInsecureCerts: true,
+        acceptSslCerts: true,
+        avoidProxy: true,
+        "ms:edgeOptions": {
+          w3c: true, // Updated to true to follow the W3C WebDriver standard
+          args: [
+            "start-fullscreen",
+            "incognito",
+            "disable-web-security",
+            "ignore-certificate-errors",
+            "no-sandbox",
+            "disable-gpu",
+            "window-size=1920,1080",
+          ],
+        },
+      },
+
+      webdriver: {
+        start_process: true,
+        server_path: "",
+        port: 9514,
+        host: "localhost",
+        ssl: false,
+        default_path_prefix: "",
+        proxy: undefined,
+        cli_args: [],
+        log_path: "./logs/edgedriver.log",
+      },
     },
 
-    webdriver: {
-        start_process: true,
-        server_path: '',
-        cli_args: [
-          // --verbose
-        ]
-      }
-  },
-    
-   'android.real.firefox': {
+    "android.real.firefox": {
       desiredCapabilities: {
         real_mobile: true,
-        browserName: 'firefox',
+        browserName: "firefox",
         acceptInsecureCerts: true,
-        'moz:firefoxOptions': {
+        "moz:firefoxOptions": {
           args: [
             // '-headless',
             // '-verbose'
           ],
-          androidPackage: 'org.mozilla.firefox',
+          androidPackage: "org.mozilla.firefox",
           // add the device serial to run tests on, if multiple devices are online
           // Run command: `$ANDROID_HOME/platform-tools/adb devices`
           // androidDeviceSerial: 'ZD2222W62Y'
-        }
+        },
       },
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
         cli_args: [
           // very verbose geckodriver logs
           // '-vv'
-        ]
-      }
+        ],
+      },
     },
 
-    'android.emulator.firefox': {
+    "android.emulator.firefox": {
       desiredCapabilities: {
         real_mobile: false,
-        avd: 'nightwatch-android-11',
-        browserName: 'firefox',
+        avd: "nightwatch-android-11",
+        browserName: "firefox",
         acceptInsecureCerts: true,
-        'moz:firefoxOptions': {
+        "moz:firefoxOptions": {
           args: [
             // '-headless',
             // '-verbose'
           ],
-          androidPackage: 'org.mozilla.firefox',
+          androidPackage: "org.mozilla.firefox",
           // add the device serial to run tests on, if multiple devices are online
           // Run command: `$ANDROID_HOME/platform-tools/adb devices`
           // androidDeviceSerial: 'ZD2222W62Y'
-        }
+        },
       },
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
         cli_args: [
           // very verbose geckodriver logs
           // '-vv'
-        ]
-      }
+        ],
+      },
     },
-    
-    'android.real.chrome': {
+
+    "android.real.chrome": {
       desiredCapabilities: {
         real_mobile: true,
-        browserName: 'chrome',
-        'goog:chromeOptions': {
+        browserName: "chrome",
+        "goog:chromeOptions": {
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
@@ -277,28 +274,28 @@ module.exports = {
             //'--allow-insecure-localhost',
             //'--headless'
           ],
-          androidPackage: 'com.android.chrome',
+          androidPackage: "com.android.chrome",
           // add the device serial to run tests on, if multiple devices are online
           // Run command: `$ANDROID_HOME/platform-tools/adb devices`
           // androidDeviceSerial: ''
         },
       },
-    
+
       webdriver: {
         start_process: true,
-        server_path: '',
+        server_path: "",
         cli_args: [
           // --verbose
-        ]
-      }
+        ],
+      },
     },
 
-    'android.emulator.chrome': {
+    "android.emulator.chrome": {
       desiredCapabilities: {
         real_mobile: false,
-        avd: 'nightwatch-android-11',
-        browserName: 'chrome',
-        'goog:chromeOptions': {
+        avd: "nightwatch-android-11",
+        browserName: "chrome",
+        "goog:chromeOptions": {
           // More info on Chromedriver: https://sites.google.com/a/chromium.org/chromedriver/
           //
           // w3c:false tells Chromedriver to run using the legacy JSONWire protocol (not required in Chrome 78)
@@ -309,107 +306,107 @@ module.exports = {
             //'--allow-insecure-localhost',
             //'--headless'
           ],
-          androidPackage: 'com.android.chrome',
+          androidPackage: "com.android.chrome",
           // add the device serial to run tests on, if multiple devices are online
           // Run command: `$ANDROID_HOME/platform-tools/adb devices`
           // androidDeviceSerial: ''
         },
       },
-    
+
       webdriver: {
         start_process: true,
         // path to chromedriver executable which can work with the factory
         // version of Chrome mobile browser on the emulator (version 83).
-        server_path: 'chromedriver-mobile/chromedriver.exe',
+        server_path: "chromedriver-mobile/chromedriver.exe",
         cli_args: [
           // --verbose
-        ]
-      }
+        ],
+      },
     },
-    
+
     app: {
       selenium: {
         start_process: true,
         use_appium: true,
-        host: 'localhost',
+        host: "localhost",
         port: 4723,
-        server_path: '',
+        server_path: "",
         // args to pass when starting the Appium server
         cli_args: [
           // automatically download the required chromedriver
           // '--allow-insecure=chromedriver_autodownload'
         ],
         // Remove below line if using Appium v1
-        default_path_prefix: ''
+        default_path_prefix: "",
       },
       webdriver: {
         timeout_options: {
           timeout: 150000,
-          retry_attempts: 3
+          retry_attempts: 3,
         },
         keep_alive: false,
-        start_process: false
-      }
-    },
-    
-    'app.android.emulator': {
-      extends: 'app',
-      'desiredCapabilities': {
-        // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
-        browserName: null,
-        platformName: 'android',
-        // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
-        // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
-        // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
-        'appium:options': {
-          automationName: 'UiAutomator2',
-          // Android Virtual Device to run tests on
-          avd: 'nightwatch-android-11',
-          // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
-          // Appium v2 does not support relative paths.
-          app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
-          appPackage: 'org.wikipedia',
-          appActivity: 'org.wikipedia.main.MainActivity',
-          appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
-          // chromedriver executable to use for testing web-views in hybrid apps
-          chromedriverExecutable: `${__dirname}/chromedriver-mobile/chromedriver.exe`,
-          newCommandTimeout: 0
-        }
-      }
+        start_process: false,
+      },
     },
 
-    'app.android.real': {
-      extends: 'app',
-      'desiredCapabilities': {
+    "app.android.emulator": {
+      extends: "app",
+      desiredCapabilities: {
         // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
         browserName: null,
-        platformName: 'android',
+        platformName: "android",
         // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
         // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
         // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
-        'appium:options': {
-          automationName: 'UiAutomator2',
+        "appium:options": {
+          automationName: "UiAutomator2",
+          // Android Virtual Device to run tests on
+          avd: "nightwatch-android-11",
           // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
           // Appium v2 does not support relative paths.
           app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
-          appPackage: 'org.wikipedia',
-          appActivity: 'org.wikipedia.main.MainActivity',
-          appWaitActivity: 'org.wikipedia.onboarding.InitialOnboardingActivity',
+          appPackage: "org.wikipedia",
+          appActivity: "org.wikipedia.main.MainActivity",
+          appWaitActivity: "org.wikipedia.onboarding.InitialOnboardingActivity",
+          // chromedriver executable to use for testing web-views in hybrid apps
+          chromedriverExecutable: `${__dirname}/chromedriver-mobile/chromedriver.exe`,
+          newCommandTimeout: 0,
+        },
+      },
+    },
+
+    "app.android.real": {
+      extends: "app",
+      desiredCapabilities: {
+        // More capabilities can be found at https://github.com/appium/appium-uiautomator2-driver#capabilities
+        browserName: null,
+        platformName: "android",
+        // `appium:options` is not natively supported in Appium v1, but works with Nightwatch.
+        // If copying these capabilities elsewhere while using Appium v1, make sure to remove `appium:options`
+        // and add `appium:` prefix to each one of its capabilities, e.g. change 'app' to 'appium:app'.
+        "appium:options": {
+          automationName: "UiAutomator2",
+          // While Appium v1 supports relative paths, it's more safe to use absolute paths instead.
+          // Appium v2 does not support relative paths.
+          app: `${__dirname}/nightwatch/sample-apps/wikipedia.apk`,
+          appPackage: "org.wikipedia",
+          appActivity: "org.wikipedia.main.MainActivity",
+          appWaitActivity: "org.wikipedia.onboarding.InitialOnboardingActivity",
           // 'chromedriver' binary is required while testing hybrid mobile apps.
-          // 
+          //
           // Set `chromedriverExecutable` to '' to use binary from `chromedriver` NPM package (if installed).
           // Or, put '--allow-insecure=chromedriver_autodownload' in `cli_args` property of `selenium`
           // config (see 'app' env above) to automatically download the required version of chromedriver
           // (delete `chromedriverExecutable` capability below in that case).
-          chromedriverExecutable: '',
+          chromedriverExecutable: "",
           newCommandTimeout: 0,
           // add device id of the device to run tests on, if multiple devices are online
           // Run command: `$ANDROID_HOME/platform-tools/adb devices` to get all connected devices
           // udid: '',
-        }
-      }
+        },
+      },
     },
-    
+
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for using the browserstack.com cloud service                    |
     //                                                                               |
@@ -506,7 +503,5 @@ module.exports = {
         browserName: 'safari'
       }
     }, */
-    
   },
-  
 };

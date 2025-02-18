@@ -91,7 +91,7 @@
 
 2. **Product Detail Page**: Verify that the selected product from the product list page displays correctly on the product detail page (name and price)
    - **Why**: Automated tests can compare the details of the selected product (name and price) on the list page with those on the detail page to ensure consistency.
-3. **Product Basket**: Ensure that selected product details (name and price) are displayed accurately in the "Your Bag" page
+3. **Product Basket**: Ensure that selected product (name and price) are displayed accurately in the "Your Bag" page
    - **Why**: Automated tests can validate that the details match what was selected, ensuring accuracy in the shopping cart.
 4. **Quantity in Product Basket**: Ensure that the customer can increase the product quantity by clicking the + button in the shopping cart or product basket page
    - **Why**: Automated tests can simulate quantity changes and verify the results, ensuring functionality.

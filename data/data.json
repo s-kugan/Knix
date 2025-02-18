@@ -1,5 +1,9 @@
 {
     "product":{
         "search":"High Rise"
+    },
+    "productSize":{
+        "size":"M+"
     }
+
 }

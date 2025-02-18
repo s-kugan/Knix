@@ -7,7 +7,8 @@ module.exports = {
       selector: "#priceWrapper  span:nth-child(1)",
     },
     linkEachProdCategory: {
-      selector: "#mainContent .h-full.group",
+      //selector: "#mainContent .h-full.group",
+      selector: 'a[class="h-full group"]',
     },
     txtProdDetailDesc: {
       selector: ".relative.grid.items-start .grid.gap-2 .hidden",
@@ -22,7 +23,6 @@ module.exports = {
         productElements.forEach(async (elem) => {
           await this.waitForElementVisible(elem, 5000);
           const prodText = await elem.getText();
-          console.log("prodText***", prodText);
           if (prodText !== undefined && prodText !== null) {
             await this.pause(500);
             browser.verify.ok(
@@ -39,19 +39,19 @@ module.exports = {
       },
       async selectFirstProductfromList() {
         await this.waitForElementVisible("@txtEachProdDesc", 8000);
+        let result = await this.getElementSize("@txtEachProdDesc");
+        console.log("result***", result);
         await this.moveToElement("@txtEachProdDesc", 0, 0);
         await this.click("@txtEachProdDesc");
       },
       async getProductPrice() {
         await this.waitForElementVisible("@txtEachProdPrice", 8000);
         let price = await this.getText("@txtEachProdPrice");
-        console.log("price***", price);
         return price;
       },
       async getProductDesc() {
         await this.waitForElementVisible("@txtEachProdDesc", 8000);
         let price = await this.getText("@txtEachProdDesc");
-        console.log("price***", price);
         return price;
       },
     },
