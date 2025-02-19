@@ -13,6 +13,16 @@
 9. clone the knix repo - https://github.com/s-kugan/Knixs
 10. run npm install in the command line
 
-## command to run the test
+## command to run the test in three different browsers
 
 npx nightwatch --config nightwatch.conf.js --tag knixproductpage --env edgeEnv --reporter=html
+
+npx nightwatch --config nightwatch.conf.js --tag knixproductpage --env chromeEnv --reporter=html
+
+npx nightwatch --config nightwatch.conf.js --tag knixproductpage --env firefoxEnv --reporter=html
+
+## command to run the test using selenium server
+
+npx nightwatch --config nightwatch.conf.js --tag knixproductpage --env selenium.chrome --reporter=html
+
+npx nightwatch --config nightwatch.conf.js --tag knixproductpage --env selenium.firefox --reporter=html

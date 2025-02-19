@@ -7,8 +7,7 @@ module.exports = {
       selector: "#priceWrapper  span:nth-child(1)",
     },
     linkEachProdCategory: {
-      //selector: "#mainContent .h-full.group",
-      selector: 'a[class="h-full group"]',
+      selector: ".w-auto.mx-5 .swiper-slide.h-full",
     },
     txtProdDetailDesc: {
       selector: ".relative.grid.items-start .grid.gap-2 .hidden",
@@ -39,8 +38,6 @@ module.exports = {
       },
       async selectFirstProductfromList() {
         await this.waitForElementVisible("@txtEachProdDesc", 8000);
-        let result = await this.getElementSize("@txtEachProdDesc");
-        console.log("result***", result);
         await this.moveToElement("@txtEachProdDesc", 0, 0);
         await this.click("@txtEachProdDesc");
       },

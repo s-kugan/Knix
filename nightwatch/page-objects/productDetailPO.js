@@ -22,7 +22,6 @@ module.exports = {
       async getColor() {
         await this.waitForElementVisible("@radioProductColor", 5000);
         let color = await this.getAttribute("@radioProductColor", "title");
-        console.log("color***", color);
         return color;
       },
     },
