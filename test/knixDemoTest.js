@@ -1,9 +1,9 @@
 let testdata = require("../data/data.json");
 
 describe("Knix Home Page Test Cases", function () {
-  //this.retries(1);
+  this.retries(1);
 
-  this.tags = ["knixhomepage", "knixregression"];
+  this.tags = ["knixproductpage", "knixregression"];
 
   beforeEach(async (browser) => {
     this.homepage = await browser.page.homePO();
