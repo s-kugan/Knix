@@ -10,9 +10,7 @@
 // \_| \_/|_| \__, ||_| |_| \__|  \_/\_/   \__,_| \__| \___||_| |_|
 //             __/ |
 //            |___/
-
 const path = require("path");
-
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
@@ -205,7 +203,115 @@ module.exports = {
         log_path: "./logs/edgedriver.log",
       },
     },
-
+    seleniumEnv: {
+      disable_error_log: false,
+      launch_url: "https://knix.com/",
+      screenshots: {
+        enabled: true,
+        path: "screens",
+        on_failure: true,
+      },
+      globals: require("./globals"), // Include the path to globals.js
+      selenium: {
+        start_process: true, // Start the Selenium Server automatically
+        port: 4444, // Port number Selenium will listen on
+        server_path: require("@nightwatch/selenium-server").path, // Path to the Selenium Server jar file
+        cli_args: {
+          "webdriver.chrome.driver": require("chromedriver").path, // Path to ChromeDriver
+          "webdriver.gecko.driver": require("geckodriver").path, // Path to GeckoDriver
+          //"webdriver.edge.driver": require("msedgeDriver").path, // Path to Edge Driver
+        },
+      },
+      webdriver: {
+        start_process: false, // Do not start WebDriver processes automatically
+      },
+    },
+    "selenium.chrome": {
+      extends: "seleniumEnv",
+      desiredCapabilities: {
+        browserName: "chrome",
+        loggingPrefs: {
+          browser: "ALL",
+          driver: "ALL",
+          performance: "ALL",
+          //server: "OFF",
+        },
+        javascriptEnabled: true,
+        acceptSslCerts: true,
+        "goog:chromeOptions": {
+          args: [
+            "start-fullscreen",
+            "incognito",
+            "--no-sandbox",
+            "--disable-infobars",
+            "--disable-gpu",
+            "disable-web-security",
+            "ignore-certificate-errors",
+            //"window-size=1920,1080",
+            "disable-setuid-sandbox",
+            "whitelist-ips",
+            "disable-dev-shm-usage",
+          ],
+          w3c: true,
+          prefs: {
+            credentials_enable_service: false,
+            "profile.password_manager_enabled": false,
+            download: {
+              prompt_for_download: false,
+              directory_upgrade: true,
+              default_directory: path.join(__dirname, "../../fileDownloads"),
+            },
+            plugins: {
+              always_open_pdf_externally: true,
+            },
+          },
+        },
+      },
+    },
+    "selenium.firefox": {
+      extends: "seleniumEnv",
+      desiredCapabilities: {
+        browserName: "firefox",
+        javascriptEnabled: true,
+        platform: "ANY",
+        acceptInsecureCerts: true,
+        elementScrollBehavior: 1,
+        alwaysMatch: {
+          "moz:firefoxOptions": {
+            args: ["--kiosk", "--width=1920", "--height=1080"],
+            prefs: {
+              "browser.helperApps.alwaysAsk.force": false,
+              "browser.download.folderList": 2,
+              // "browser.privatebrowsing.autostart": true,
+              "pdfjs.disabled": true,
+              "browser.helperApps.neverAsk.openFile":
+                "application/pdf,application/zip",
+              "browser.helperApps.neverAsk.saveToDisk":
+                "application/zip,application/octet-stream,image/jpeg,application/vnd.ms-outlook,text/html,application/pdf",
+              "browser.download.manager.showWhenStarting": false,
+              "browser.download.manager.useWindow": false,
+              "browser.download.manager.showAlertOnComplete": false,
+              "browser.download.dir": path.join(__dirname, "/fileDownloads"),
+              "browser.download.downloadDir": path.join(
+                __dirname,
+                "/fileDownloads"
+              ),
+              "browser.download.defaultFolder": path.join(
+                __dirname,
+                "/fileDownloads"
+              ),
+            },
+          },
+        },
+      },
+    },
+    "selenium.edge": {
+      extends: "seleniumEnv",
+      desiredCapabilities: {
+        browserName: "MicrosoftEdge",
+      },
+    },
+    /* 
     "android.real.firefox": {
       desiredCapabilities: {
         real_mobile: true,
@@ -405,7 +511,7 @@ module.exports = {
           // udid: '',
         },
       },
-    },
+    }, */
 
     //////////////////////////////////////////////////////////////////////////////////
     // Configuration for using the browserstack.com cloud service                    |
@@ -415,93 +521,93 @@ module.exports = {
     // - BROWSERSTACK_ACCESS_KEY                                                     |
     // .env files are supported                                                      |
     //////////////////////////////////////////////////////////////////////////////////
-    /* browserstack: {
+    browserstack: {
       selenium: {
-        host: 'hub.browserstack.com',
-        port: 443
+        host: "hub.browserstack.com",
+        port: 443,
       },
       // More info on configuring capabilities can be found on:
       // https://www.browserstack.com/automate/capabilities?tag=selenium-4
       desiredCapabilities: {
-        'bstack:options': {
-          userName: '${BROWSERSTACK_USERNAME}',
-          accessKey: '${BROWSERSTACK_ACCESS_KEY}'
-        }
+        "bstack:options": {
+          userName: process.env.BROWSERSTACK_USERNAME,
+          accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
+        },
       },
 
       disable_error_log: true,
       webdriver: {
         timeout_options: {
           timeout: 60000,
-          retry_attempts: 3
+          retry_attempts: 3,
         },
         keep_alive: true,
-        start_process: false
-      }
+        start_process: false,
+      },
     },
 
-    'browserstack.local': {
-      extends: 'browserstack',
+    "browserstack.local": {
+      extends: "browserstack",
       desiredCapabilities: {
-        'browserstack.local': true
-      }
+        "browserstack.local": true,
+      },
     },
-    
-    'browserstack.chrome': {
-      extends: 'browserstack',
+
+    "browserstack.chrome": {
+      extends: "browserstack",
       desiredCapabilities: {
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-          w3c: true
-        }
-      }
-    },
-    
-    'browserstack.firefox': {
-      extends: 'browserstack',
-      desiredCapabilities: {
-        browserName: 'firefox'
-      }
-    },
-    
-    'browserstack.local_chrome': {
-      extends: 'browserstack.local',
-      desiredCapabilities: {
-        browserName: 'chrome'
-      }
-    },
-    
-    'browserstack.local_firefox': {
-      extends: 'browserstack.local',
-      desiredCapabilities: {
-        browserName: 'firefox'
-      }
-    },
-    
-    'browserstack.android.chrome': {
-      extends: 'browserstack',
-      desiredCapabilities: {
-        'bstack:options' : {
-          osVersion: '12.0',
-          deviceName: 'Samsung Galaxy S22'
+        browserName: "chrome",
+        "goog:chromeOptions": {
+          w3c: true,
         },
-        browserName: 'chrome',
-        'goog:chromeOptions': {
+      },
+    },
+
+    "browserstack.firefox": {
+      extends: "browserstack",
+      desiredCapabilities: {
+        browserName: "firefox",
+      },
+    },
+
+    "browserstack.local_chrome": {
+      extends: "browserstack.local",
+      desiredCapabilities: {
+        browserName: "chrome",
+      },
+    },
+
+    "browserstack.local_firefox": {
+      extends: "browserstack.local",
+      desiredCapabilities: {
+        browserName: "firefox",
+      },
+    },
+
+    "browserstack.android.chrome": {
+      extends: "browserstack",
+      desiredCapabilities: {
+        "bstack:options": {
+          osVersion: "12.0",
+          deviceName: "Samsung Galaxy S22",
+        },
+        browserName: "chrome",
+        "goog:chromeOptions": {
           // w3c: false
-        }
-      }
+        },
+      },
     },
 
-    'browserstack.ios.safari': {
-      extends: 'browserstack',
+    "browserstack.ios.safari": {
+      extends: "browserstack",
       desiredCapabilities: {
-        browserName: 'safari',
-        'bstack:options' : {
+        browserName: "safari",
+        "bstack:options": {
           osVersion: "15.5",
-          deviceName: "iPhone 13"
+          deviceName: "iPhone 13",
         },
-        browserName: 'safari'
-      }
-    }, */
+        browserName: "safari",
+      },
+    },
   },
 };
