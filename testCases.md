@@ -9,7 +9,7 @@
 ### **a-i. Prioritized Test Cases**
 
 1. **Search for a product and ensure it returns relevant results.**
-2. **Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and image).**
+2. **Verify that the selected product from the product list page displays correctly on the product detail page (name, price, and size).**
 3. **Ensure that selected product details (name, price and size) are displayed accurately in the "Your Bag" page.**
 4. **Check that the "checkout" button leads to the "Payment" page.**
 5. **Ensure that the customer can increase the product quantity by clicking the + button and verify quantity and sub-total in the cart.**
